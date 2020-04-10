@@ -5,4 +5,5 @@
     <color name="colorAccent">#000000</color>
     <color name="white">#FFFFFF	</color>
     <color name='gold'>#d4af37</color>
+    <color name="btn_color">#1327d6</color>
 </resources>

@@ -71,8 +71,7 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("inside", "inds ");
-                if ((name.equals("")) || (password.equals(""))){
+                if ((name.getText().toString().equals("")) || (password.getText().toString().equals(""))){
                     Toast.makeText(getApplicationContext(), "Fields cannot be set empty", Toast.LENGTH_LONG).show();
 
                 }

@@ -31,22 +31,28 @@ public class activity_third extends AppCompatActivity {
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cursor res = mydb.name_query(username.getText().toString());
-                if (res.getCount() == 0) {
-                    if (password.getText().toString().equals(confirm_password.getText().toString())) {
-                        boolean reply = mydb.insertData(username.getText().toString(), password.getText().toString());
-                        if (reply) {
-                            Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_LONG).show();
-                            Intent redirect = new Intent(activity_third.this, MainActivity.class);
-                            startActivity(redirect);
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Registration Error", Toast.LENGTH_LONG).show();
-                        }
-                    }
+                if ((username.getText().toString().equals("")) || (password.getText().toString().equals("")) || (confirm_password.getText().toString().equals(""))){
+                    Toast.makeText(getApplicationContext(), "Fields cannot be set empty", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "User_name already exits", Toast.LENGTH_LONG).show();
+                    Cursor res = mydb.name_query(username.getText().toString());
+                    if (res.getCount() == 0) {
+                        if (password.getText().toString().equals(confirm_password.getText().toString())) {
+                            boolean reply = mydb.insertData(username.getText().toString(), password.getText().toString());
+                            if (reply) {
+                                Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_LONG).show();
+                                Intent redirect = new Intent(activity_third.this, MainActivity.class);
+                                startActivity(redirect);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Registration Error", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "User_name already exits", Toast.LENGTH_LONG).show();
+                    }
                 }
+
             }
         });
     }
