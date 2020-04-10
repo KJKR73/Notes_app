@@ -36,8 +36,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertData(String user_name, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1, user_name);
-        contentValues.put(COL_2, password);
+        contentValues.put(COL_2, user_name);
+        contentValues.put(COL_3, password);
         long result = db.insert(TABLE_NAME, null , contentValues);
         if (result == -1){
             return false;
@@ -49,7 +49,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor name_query(String user_name){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select user_name from " + TABLE_NAME + "where name = '" + user_name + "'", null);
+        Cursor res = db.rawQuery("select user_name from " + TABLE_NAME + " where user_name='" + user_name + "'", null);
         return res;
     }
+
+    public Cursor login_data(String user_name, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select user_name, password from " + TABLE_NAME + " where user_name='" + user_name + "' and password='" + password + "'", null );
+        return res;
+    }
+
 }

@@ -6,7 +6,9 @@ import androidx.core.content.ContextCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,12 +34,6 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText)findViewById(R.id.id_password);
         login = (Button)findViewById(R.id.btn_login);
         signup = (TextView)findViewById(R.id.signup);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                validate(name.getText().toString(), password.getText().toString());
-            }
-        });
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        mydb = new DatabaseHelper(getApplicationContext());
+        login_to_app();
     }
 
     @Override
@@ -70,23 +67,27 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
 
-    private void validate(String username, String password){
-        if ((username.equals("")) || (password.equals(""))){
-            Toast emptyerr = Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG);
-            emptyerr.show();
-        }
-        if ((username.equals("admin")) && (password.equals("1234"))){
-            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-            Toast msg = Toast.makeText(getApplicationContext(), "WELCOME", Toast.LENGTH_LONG);
-            msg.show();
-            startActivity(intent);
-        }
-        else{
-            counter++;
-            if(counter == 5){
-                login.setEnabled(false);
+    public void login_to_app(){
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("inside", "inds ");
+                if ((name.equals("")) || (password.equals(""))){
+                    Toast.makeText(getApplicationContext(), "Fields cannot be set empty", Toast.LENGTH_LONG).show();
+
+                }
+                else{
+                    Cursor reply = mydb.login_data(name.getText().toString(), password.getText().toString());
+                    Log.d("reply", "ans = " + reply.getCount());
+                    if (reply.getCount() == 1){
+                        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                        startActivity(intent);
+                    }
+                }
+
             }
-        }
+        });
     }
+
 
 }
