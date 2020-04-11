@@ -14,6 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_1 = "id";
     public static final String COL_2 = "user_name";
     public static final String COL_3 = "password";
+    public static final String COL_4 = "note";
     private Object ContentValues;
 
     public DatabaseHelper(@Nullable Context context) {
@@ -23,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (id INTEGER PRIMARY KEY AUTOINCREMENT, user_name TEXT, password TEXT)");
+        db.execSQL("create table " + TABLE_NAME + " (id INTEGER PRIMARY KEY AUTOINCREMENT, user_name TEXT, password TEXT, note TEXT)");
 
     }
 
@@ -45,6 +46,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else{
             return true;
         }
+    }
+
+    public boolean save_text(String user_name, String text){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_4, text);
+        db.update(TABLE_NAME, contentValues, "user_name = ?", new String[] {user_name});
+        return true;
+    }
+
+    public Cursor text_query(String user_name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select note from " + TABLE_NAME + " where user_name='" + user_name + "'", null);
+        return res;
     }
 
     public Cursor name_query(String user_name){

@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("reply", "ans = " + reply.getCount());
                     if (reply.getCount() == 1){
                         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                        intent.putExtra("user_name", name.getText().toString());
                         startActivity(intent);
                     }
                 }

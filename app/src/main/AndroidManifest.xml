@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_third"></activity>
+        <activity
+            android:name=".multiple_note"
+            android:label="@string/title_activity_multiple_note"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity_third" />
         <activity android:name=".SecondActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
