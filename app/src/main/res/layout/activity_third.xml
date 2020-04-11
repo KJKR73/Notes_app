@@ -7,15 +7,31 @@
     tools:context=".activity_third"
     android:background="@drawable/back69">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="320dp"
+        android:layout_height="149dp"
+        android:layout_marginTop="88dp"
+        android:fontFamily="@font/flavors"
+        android:gravity="center"
+        android:text="Sign up"
+        android:textColor="#FFFFFF"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/username"
         android:layout_width="326dp"
         android:layout_height="68dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="32dp"
         android:width="300dp"
         android:height="100dp"
         android:backgroundTint="#1327d6"
         android:ems="10"
+        android:fontFamily="@font/vidaloka"
         android:hint="Username"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
@@ -25,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/conf_pass"
@@ -36,6 +52,7 @@
         android:height="100dp"
         android:backgroundTint="#1327d6"
         android:ems="10"
+        android:fontFamily="@font/vidaloka"
         android:hint="Confirm Password"
         android:inputType="textPersonName"
         android:password="true"
@@ -56,6 +73,7 @@
         android:height="100dp"
         android:backgroundTint="#1327d6"
         android:ems="10"
+        android:fontFamily="@font/vidaloka"
         android:hint="Password"
         android:inputType="textPersonName"
         android:password="true"
@@ -73,6 +91,7 @@
         android:layout_height="59dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/rounded_button"
+        android:fontFamily="@font/vidaloka"
         android:text="sign up"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
